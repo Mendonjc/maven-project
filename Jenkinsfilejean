@@ -148,7 +148,7 @@ stage('build ') {
 
             steps {
                sh '''
-           docker build -t devopseasylearning2021/Jean_Claude:$ImageTAG .
+           docker build -t devopseasylearning2021/jean_claude:$ImageTAG .
                '''
             }
         }
@@ -171,7 +171,7 @@ stage('build ') {
      stage('Docker push ') {
             steps {
                sh '''
-              docker push devopseasylearning2021/Jean_Claude:$ImageTAG 
+              docker push devopseasylearning2021/jean_claude:$ImageTAG 
                 '''
             }
         }
