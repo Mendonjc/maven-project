@@ -1,7 +1,7 @@
 pipeline {
-    agent {
-                label 'node1'
-            }
+    agent { 
+        label 'node1'
+         }
    
    environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
@@ -91,10 +91,7 @@ stage('package') {
 
             steps {
                sh '''
-            cd $WORKSPACE
-              pwd
-	      rm -rf webapp/target/webapp.war || true 
-              docker run -i --rm --user root -v $PWD:/vol  -w /vol   devopseasylearning2021/s2:004  bash -c " mvn package ; ls -l webapp/target/ ; cp -r webapp/target/webapp.war /vol ; ls -l ; cat /git/clone.sh > clone.sh ; bash clone.sh " 
+         mvn package
                '''
             }
         }
@@ -176,13 +173,17 @@ stage('build ') {
             }
         }
 
-stage('Deploy with docker ') {
+    
+
+
+    stage('Deploy with docker ') {
             steps {
                sh '''
-              docker run -d -p 8089: 455 devopseasylearning2021/jean_claude:$ImageTAG 
+               docker run -d -p 8089:8080 devopseasylearning2021/jean_claude:$ImageTAG 
                 '''
             }
         }
+
 
 
     }
